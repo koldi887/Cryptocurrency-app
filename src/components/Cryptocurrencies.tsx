@@ -1,28 +1,48 @@
-import React, {useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import millify from "millify";
 import {Link} from 'react-router-dom'
-import {Card, Row, Col, Input} from 'antd'
+import {Card, Col, Input, Row} from 'antd'
 
 import {useGetCryptosQuery} from "../api/cryptoApi";
+import {PreLoader} from "../common/Preloader/Preloader";
 import {CoinType} from "../types/apiResponseTypes";
 
-const Cryptocurrencies = () => {
-    const {data: cryptosList, isFetching, isSuccess} = useGetCryptosQuery(50)
-    const [cryptos, setCryptos] = useState<CoinType[]>([])
+type PropsType = {
+    simplified?: boolean
+}
+
+const Cryptocurrencies: React.FC<PropsType> = ({simplified}) => {
+    const count = simplified ? 10 : 100
+    const {data: cryptosList, isFetching} = useGetCryptosQuery(count)
+    const [cryptos, setCryptos] = useState<CoinType[] | undefined>([])
+    const [searchTerm, setSearchTerm] = useState('')
 
     useEffect(() => {
-        if (isSuccess) {
-            setCryptos(cryptosList.data.coins)
-        }
-    }, [])
+        const filteredData = cryptosList?.data.coins.filter(coin => coin.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
+        setCryptos(filteredData)
+    }, [cryptosList, searchTerm])
+
+    const searchHandler
+        = (e: ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value)
+    }
+
+    if (isFetching) return <PreLoader/>
     return (
         <>
+            {!simplified &&
+                <div className='search-crypto'>
+                    <Input placeholder='Search Cryptocurrency'
+                           onChange={searchHandler}/>
+                </div>
+            }
             <Row gutter={[32, 32]} className='crypto-card-container'>
-                {cryptos.map((currency) => (
+                {cryptos?.map((currency) => (
                     <Col xs={24} sm={12} lg={6}
                          className='crypto-card'
-                         key={currency.uuid}>
+                         key={currency.uuid}
+                    >
                         <Link to={`/crypto/${currency.uuid}`}>
                             <Card
                                 title={`${currency.rank}. ${currency.name}`}
@@ -31,8 +51,10 @@ const Cryptocurrencies = () => {
                                 hoverable
                             >
                                 <p>Price: {millify(currency.price)}</p>
-                                <p>Market Cap: {millify(currency.marketCap)}</p>
-                                <p>Daily Change: {millify(currency.change)}</p>
+                                <p>Market
+                                    Cap: {millify(currency.marketCap)}</p>
+                                <p>Daily
+                                    Change: {millify(currency.change)}</p>
                             </Card>
                         </Link>
                     </Col>

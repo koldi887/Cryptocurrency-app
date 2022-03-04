@@ -4,6 +4,7 @@ import {Col, Row, Statistic, Typography} from "antd";
 import {useGetCryptosQuery} from "../api/cryptoApi";
 import {Link} from "react-router-dom";
 import {Cryptocurrencies, News} from "../components";
+import {PreLoader} from "../common/Preloader/Preloader";
 
 const {Title} = Typography
 
@@ -11,7 +12,7 @@ const Homepage = () => {
     const {data, isFetching} = useGetCryptosQuery(100)
     const globalStats = data?.data.stats
 
-    if (isFetching) return <h1>Loading...</h1>
+    if (isFetching) return <PreLoader/>
     return (
         <>
             <Title level={2} className="heading">Global Crypto Stats</Title>
@@ -48,7 +49,7 @@ const Homepage = () => {
                     <Link to='/cryptocurrencies'> Show More</Link>
                 </Title>
             </div>
-            <Cryptocurrencies/>
+            <Cryptocurrencies simplified/>
 
             <div className='home-heading-container'>
                 <Title level={2} className='home-title'>
