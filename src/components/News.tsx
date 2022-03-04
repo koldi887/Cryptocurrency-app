@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
-import {Select, Typography, Row, Col, Avatar, Card} from "antd";
+import React, { useState } from 'react';
+import { Select, Typography, Row, Col, Avatar, Card } from "antd";
 import moment from "moment";
 
-import {useGetCryptoNewsQuery} from "../api/cryptoNewsApi";
-import {PreLoader} from "../common/Preloader/Preloader";
-import {useGetCryptosQuery} from "../api/cryptoApi"
+import { useGetCryptoNewsQuery } from "../api/cryptoNewsApi";
+import { PreLoader } from "../common/Preloader/Preloader";
+import { useGetCryptosQuery } from "../api/cryptoApi"
 import demoImage from '../images/gettyimages-917454386.jpg'
 
-const {Text, Title} = Typography
-const {Option} = Select
+const { Text, Title } = Typography
+const { Option } = Select
 
 type PropsType = {
     simplified?: boolean
 }
 
-const News: React.FC<PropsType> = ({simplified}) => {
+const News: React.FC<PropsType> = ({ simplified }) => {
     const [newsCategory, setNewsCategory] = useState('Cryptocurrency');
-    const {data} = useGetCryptosQuery(100);
-    const {data: cryptoNews, isFetching} = useGetCryptoNewsQuery({
+    const { data } = useGetCryptosQuery(100);
+    const { data: cryptoNews, isFetching } = useGetCryptoNewsQuery({
         newsCategory,
         count: simplified ? 6 : 12
     });
@@ -54,7 +54,7 @@ const News: React.FC<PropsType> = ({simplified}) => {
                                 <img
                                     src={news.image?.thumbnail.contentUrl || demoImage}
                                     alt=""
-                                    style={{width: '100px', height: '100px'}}
+                                    style={{ width: '100px', height: '100px' }}
                                 />
                             </div>
                             <p>{news.description.length > 100
@@ -66,7 +66,10 @@ const News: React.FC<PropsType> = ({simplified}) => {
                                     <Avatar
                                         src={news.provider[0].image?.thumbnail.contentUrl || demoImage}
                                         alt=""
-                                        style={{width: '32px', height: '32px'}}
+                                        style={{
+                                            width: '32px',
+                                            height: '32px'
+                                        }}
                                     />
                                     <Text
                                         className="provider-name">{news.provider[0]?.name}</Text>

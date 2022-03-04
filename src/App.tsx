@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import {Link, Route, Routes} from 'react-router-dom'
-import {Layout, Space, Typography} from 'antd'
+import { Link, Route, Routes } from 'react-router-dom'
+import { Layout, Space, Typography } from 'antd'
 import {
     Cryptocurrencies,
     CryptoDetails,

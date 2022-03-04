@@ -1,19 +1,19 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import millify from "millify";
-import {Link} from 'react-router-dom'
-import {Card, Col, Input, Row} from 'antd'
+import { Link } from 'react-router-dom'
+import { Card, Col, Input, Row } from 'antd'
 
-import {useGetCryptosQuery} from "../api/cryptoApi";
-import {PreLoader} from "../common/Preloader/Preloader";
-import {CoinType} from "../types/coinsApiDataTypes";
+import { useGetCryptosQuery } from "../api/cryptoApi";
+import { PreLoader } from "../common/Preloader/Preloader";
+import { CoinType } from "../types/coinsApiDataTypes";
 
 type PropsType = {
     simplified?: boolean
 }
 
-const Cryptocurrencies: React.FC<PropsType> = ({simplified}) => {
+const Cryptocurrencies: React.FC<PropsType> = ({ simplified }) => {
     const count = simplified ? 10 : 100
-    const {data: cryptosList, isFetching} = useGetCryptosQuery(count)
+    const { data: cryptosList, isFetching } = useGetCryptosQuery(count)
     const [cryptos, setCryptos] = useState<CoinType[] | undefined>([])
     const [searchTerm, setSearchTerm] = useState('')
 

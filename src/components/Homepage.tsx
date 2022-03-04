@@ -1,15 +1,15 @@
 import React from 'react';
 import millify from "millify";
-import {Col, Row, Statistic, Typography} from "antd";
-import {useGetCryptosQuery} from "../api/cryptoApi";
-import {Link} from "react-router-dom";
-import {Cryptocurrencies, News} from "../components";
-import {PreLoader} from "../common/Preloader/Preloader";
+import { Col, Row, Statistic, Typography } from "antd";
+import { useGetCryptosQuery } from "../api/cryptoApi";
+import { Link } from "react-router-dom";
+import { Cryptocurrencies, News } from "../components";
+import { PreLoader } from "../common/Preloader/Preloader";
 
-const {Title} = Typography
+const { Title } = Typography
 
 const Homepage = () => {
-    const {data, isFetching} = useGetCryptosQuery(100)
+    const { data, isFetching } = useGetCryptosQuery(100)
     const globalStats = data?.data.stats
 
     if (isFetching) return <PreLoader/>
