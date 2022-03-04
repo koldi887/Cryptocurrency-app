@@ -5,7 +5,7 @@ import {Card, Col, Input, Row} from 'antd'
 
 import {useGetCryptosQuery} from "../api/cryptoApi";
 import {PreLoader} from "../common/Preloader/Preloader";
-import {CoinType} from "../types/apiResponseTypes";
+import {CoinType} from "../types/coinsApiDataTypes";
 
 type PropsType = {
     simplified?: boolean

@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
-import {CoinsApiResponseType} from "../types/apiResponseTypes";
+import {CoinsApiResponseType} from "../types/coinsApiDataTypes";
 
 const cryptoApiHeaders = {
     'x-rapidapi-host': 'coinranking1.p.rapidapi.com',
