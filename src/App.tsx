@@ -11,7 +11,6 @@ import {
     News
 } from './components'
 
-
 function App() {
     return (
         <div className="app">
@@ -23,11 +22,9 @@ function App() {
                     <div className="routes">
                         <Routes>
                             <Route path="/"
-                                   element={<Homepage/>}
-                            />
+                                   element={<Homepage/>}/>
                             <Route path="/exchanges"
-                                   element={<Exchanges/>}
-                            />
+                                   element={<Exchanges/>}/>
                             <Route path="/cryptocurrencies"
                                    element={<Cryptocurrencies/>}/>
                             <Route path="/crypto/:coinId"
