@@ -1,22 +1,23 @@
 export type CoinsApiResponseType = {
     data: {
-        coins: CoinsTypes[]
+        coins: CoinType[]
         stats: StatsType
     }
 }
 
-export type CoinsTypes = {
+export type CoinType = {
+    uuid: string,
     "24hVolume": string,
-    btcPrice: string,
-    change: string,
+    btcPrice: number,
+    change: number,
     coinrankingUrl: string,
     color: string,
     iconUrl: string,
     listedAt: number,
     lowVolume: boolean,
-    marketCap: string,
+    marketCap: number,
     name: string,
-    price: string,
+    price: number,
     rank: number,
 }
 
