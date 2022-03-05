@@ -7,7 +7,25 @@ export type CoinsApiResponseType = {
 
 export type CoinType = {
     uuid: string,
-    "24hVolume": string,
+    ['24hVolume']: string,
+    allTimeHigh: {
+        price: number
+        timestamp: number
+    },
+    numberOfExchanges: number,
+    numberOfMarkets: number,
+    supply: {
+        circulating: number,
+        confirmed: boolean
+        total: number
+    }
+    description: string
+    slug: string,
+    links: [ {
+        name: string
+        url: string
+        type: string
+    } ]
     btcPrice: number,
     change: number,
     coinrankingUrl: string,

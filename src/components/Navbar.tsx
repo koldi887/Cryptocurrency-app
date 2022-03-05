@@ -6,7 +6,6 @@ import {
     MoneyCollectOutlined,
     BulbOutlined,
     FundOutlined,
-    MenuOutlined
 } from "@ant-design/icons";
 import icon from '../images/cryptocurrency.png'
 
