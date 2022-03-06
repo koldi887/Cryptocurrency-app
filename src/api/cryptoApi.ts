@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { CoinsApiResponseType, CoinType } from "../types/coinsApiDataTypes";
 import { CoinsHistoryApiType } from "../types/coinsHistoryApiTypes";
-import { strict } from "assert";
 
 const cryptoApiHeaders = {
     'x-rapidapi-host': 'coinranking1.p.rapidapi.com',
@@ -21,11 +20,11 @@ export const cryptoApi = createApi({
             query: (coinId) => createRequest(`/coin/${coinId}`),
         }),
 
-        getCryptoHistory: builder.query<{ data: CoinsHistoryApiType[] }, { coinId: string | undefined, timeperiod: string }>({
+        getCryptoHistory: builder.query<CoinsHistoryApiType, { coinId: string | undefined, timePeriod: string }>({
             query: ({
                         coinId,
-                        timeperiod
-                    }) => createRequest(`coin/${coinId}/history?timeperiod=${timeperiod}`),
+                        timePeriod
+                    }) => createRequest(`coin/${coinId}/history?timePeriod=${timePeriod}`),
         }),
 
         getExchanges: builder.query({

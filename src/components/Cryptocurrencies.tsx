@@ -14,14 +14,14 @@ type PropsType = {
 const Cryptocurrencies: React.FC<PropsType> = ({ simplified }) => {
     const count = simplified ? 10 : 100
     const { data: cryptosList, isFetching } = useGetCryptosQuery(count)
-    const [cryptos, setCryptos] = useState<CoinType[] | undefined>([])
-    const [searchTerm, setSearchTerm] = useState('')
+    const [ cryptos, setCryptos ] = useState<CoinType[] | undefined>([])
+    const [ searchTerm, setSearchTerm ] = useState('')
 
     useEffect(() => {
         const filteredData = cryptosList?.data.coins.filter(coin => coin.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
         setCryptos(filteredData)
-    }, [cryptosList, searchTerm])
+    }, [ cryptosList, searchTerm ])
 
     const searchHandler
         = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +37,7 @@ const Cryptocurrencies: React.FC<PropsType> = ({ simplified }) => {
                            onChange={searchHandler}/>
                 </div>
             }
-            <Row gutter={[32, 32]} className='crypto-card-container'>
+            <Row gutter={[ 32, 32 ]} className='crypto-card-container'>
                 {cryptos?.map((currency) => (
                     <Col xs={24} sm={12} lg={6}
                          className='crypto-card'
@@ -52,7 +52,7 @@ const Cryptocurrencies: React.FC<PropsType> = ({ simplified }) => {
                             >
                                 <p>Price: {millify(currency.price)}</p>
                                 <p>Market Cap: {millify(currency.marketCap)}</p>
-                                <p>Daily Change: {millify(currency.change)}</p>
+                                <p>Daily Change: {millify(currency.change)}%</p>
                             </Card>
                         </Link>
                     </Col>
